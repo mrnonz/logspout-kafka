@@ -117,7 +117,7 @@ func newConfig() *sarama.Config {
 	config.ClientID = "logspout"
 	config.Producer.Return.Errors = false
 	config.Producer.Return.Successes = false
-	config.Producer.Flush.Frequency = flushMs * time.Millisecond
+	config.Producer.Flush.Frequency = time.Duration(flushMs) * time.Millisecond
 	config.Producer.RequiredAcks = sarama.WaitForLocal
 
 	if opt := os.Getenv("KAFKA_COMPRESSION_CODEC"); opt != "" {
